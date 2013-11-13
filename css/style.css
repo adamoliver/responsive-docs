@@ -1,0 +1,198 @@
+/* Overrides the width set by Twitter Bootstrap */
+.container {
+    width: 100%;
+}
+
+/* Layout styles */
+html,
+body,
+.docs-container,
+.docs-pusher,
+.docs-content {
+    height: 100%;
+}
+
+.docs-content {
+    overflow-y: scroll;
+    background: #fff;
+    -webkit-transition: margin 0.5s;
+    transition: margin 0.5s;
+}
+
+.docs-content,
+.docs-content-inner {
+    position: relative;
+}
+
+.docs-container {
+    position: relative;
+    overflow: hidden;
+}
+
+.docs-pusher {
+    position: relative;
+    left: 0;
+    z-index: 99;
+    height: 100%;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.docs-pusher::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    background: rgba(255, 255, 255, 0.5);
+    content: '';
+    opacity: 0;
+    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+.docs-menu-open .docs-pusher::after {
+    width: 100%;
+    height: 100%;
+    opacity: 1;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.docs-menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 100;
+    visibility: hidden;
+    width: 300px;
+    height: 100%;
+    overflow-y: auto;
+    background: #E5E5E5;
+    padding: 20px 40px;
+    -webkit-transition: all 0.5s;
+    transition: all 0.5s;
+}
+
+.docs-menu::after {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    content: '';
+    opacity: 1;
+    -webkit-transition: opacity 0.5s;
+    transition: opacity 0.5s;
+}
+
+.docs-menu-open .docs-menu::after {
+    width: 0;
+    height: 0;
+    opacity: 0;
+    -webkit-transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+    transition: opacity 0.5s, width 0.1s 0.5s, height 0.1s 0.5s;
+}
+
+.docs-menu__logo {
+    margin-bottom: 25px;
+}
+
+.docs-menu__heading {
+    text-transform: uppercase;
+    font-size: 1em;
+    color: #666;
+}
+
+.docs-menu__list {
+    margin-bottom: 30px;
+}
+
+.docs-menu__item-link {
+    display: block;
+    color: #aaa;
+}
+
+.docs-menu__item-link:hover {
+    color: #777;
+    text-decoration: none;
+}
+
+.docs-menu__item-link--active {
+    color: #555;
+}
+
+
+/* Menu transition */
+
+.docs-transition.docs-menu-open .docs-pusher {
+    -webkit-transform: translate3d(300px, 0, 0);
+    transform: translate3d(300px, 0, 0);
+}
+
+.docs-transition.docs-menu {
+    -webkit-transform: translate3d(-100%, 0, 0);
+    transform: translate3d(-100%, 0, 0);
+}
+
+.docs-transition.docs-menu-open .docs-transition.docs-menu {
+    visibility: visible;
+    -webkit-transition: -webkit-transform 0.5s;
+    transition: transform 0.5s;
+}
+
+.docs-transition.docs-menu::after {
+    display: none;
+}
+
+
+
+/* Menu button, hidden by default, shown with media queries */
+.open-menu {
+    display: none;
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    z-index: 10000;
+    font-size: 2em;
+    padding: 4px 10px 1px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid #ddd;
+    color: #333;
+}
+
+.open-menu:hover {
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+}
+
+/* Fallback example for browsers that don't support 3D transforms (and no JS fallback) */
+.no-csstransforms3d .docs-pusher,
+.no-js .docs-pusher {
+    padding-left: 300px;
+}
+
+
+/* Larger screens */
+@media(min-width: 768px) {
+
+    .docs-transition.docs-menu {
+        visibility: visible;
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+    }
+    .docs-content {
+        margin-left: 300px;
+    }
+}
+
+/* Small screens */
+@media(max-width: 768px) {
+    .open-menu, .open-menu:hover {
+        display: block;
+    }
+}
+
+
